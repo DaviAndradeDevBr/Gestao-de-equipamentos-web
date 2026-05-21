@@ -25,6 +25,22 @@ public class FabricanteController : Controller
 
         return View(fabricantes);
     }
+
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Cadastrar(string nome, string email, string telefone)
+    {
+        Fabricante novoFabricante = new Fabricante(nome, email, telefone);
+
+        repositorioFabricante.Cadastrar(novoFabricante);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
 
 
